@@ -8,6 +8,13 @@ rc = RedisCluster(startup_nodes=startup_nodes, max_connections=32, decode_respon
 print(rc.get("{{*}_test_flow_number}:id"))
 rc.delete("{{*}_test_flow_number}:id")
 
+d = str(i)
+pipe = rc.pipeline(transaction=False)
+l=pipe.execute_command("keys {*_test_flow_number}:id")
+for i in l:
+	print(pipe.get(i))
+	pipe.execute()
+
 # print(rc.get("{test2_test_flow_number}:id"))
 # rc.delete("{test2_test_flow_number}:id")
 # print(rc.get("{test1_test_flow_number}:id"))
