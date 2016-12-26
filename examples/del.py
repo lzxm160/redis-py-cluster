@@ -6,5 +6,5 @@ rc = RedisCluster(startup_nodes=startup_nodes, max_connections=32, decode_respon
 # rc.set("foo", "bar")
 # rc.set("foo", "bar")
 print(rc.get("{test3_test_flow_number}:id"))
-rc.del("{test3_test_flow_number}:id")
+rc.delete("{test3_test_flow_number}:id")
 
