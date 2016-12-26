@@ -8,7 +8,7 @@ rc = RedisCluster(startup_nodes=startup_nodes, max_connections=32, decode_respon
 # rc.set("foo", "bar")
 # print(rc.get("{{*}_test_flow_number}:id"))
 # rc.delete("{{*}_test_flow_number}:id")
-# 1月1日23:59分
+# 1.1 23:59
 # 59 23 1 1 * command line
 # bak data
 shutil.copy2('/usr/local/redis/data/appendonly-6380.aof', '/usr/local/redis/data/appendonly-6380-2016.12.31bak.aof')
