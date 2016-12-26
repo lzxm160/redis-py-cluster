@@ -5,10 +5,9 @@ startup_nodes = [{"host": "127.0.0.1", "port": 6380}]
 rc = RedisCluster(startup_nodes=startup_nodes, max_connections=32, decode_responses=True)
 # rc.set("foo", "bar")
 # rc.set("foo", "bar")
-print(rc.get("{{*}_test_flow_number}:id"))
-rc.delete("{{*}_test_flow_number}:id")
+# print(rc.get("{{*}_test_flow_number}:id"))
+# rc.delete("{{*}_test_flow_number}:id")
 
-d = str(i)
 pipe = rc.pipeline(transaction=False)
 l=pipe.execute_command("keys {*_test_flow_number}:id")
 for i in l:
