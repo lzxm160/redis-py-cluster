@@ -1,5 +1,6 @@
 from redis._compat import xrange
 from rediscluster import RedisCluster
+import shutil
 
 startup_nodes = [{"host": "127.0.0.1", "port": 6380}]
 rc = RedisCluster(startup_nodes=startup_nodes, max_connections=32, decode_responses=True)
