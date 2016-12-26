@@ -11,7 +11,7 @@ rc = RedisCluster(startup_nodes=startup_nodes, max_connections=32, decode_respon
 # 1.1 23:59
 # 59 23 1 1 * command line
 # bak data
-port=[6380,6381,6382,7380,7381,7382]
+port=['6380','6381','6382','7380','7381','7382']
 for i in port:
 	from='/usr/local/redis/data/appendonly-'+i+'.aof'
 	to='/usr/local/redis/data/appendonly-'+i+'-2016.12.31bak.aof'
