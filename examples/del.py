@@ -11,6 +11,7 @@ rc = RedisCluster(startup_nodes=startup_nodes, max_connections=32, decode_respon
 keys=set(rc.keys(pattern='{*_test_flow_number}:id'))
 for i in keys:
 	print(rc.get(i))
+	rc.delete(i)
 # print(rc.get("{test2_test_flow_number}:id"))
 # rc.delete("{test2_test_flow_number}:id")
 # print(rc.get("{test1_test_flow_number}:id"))
