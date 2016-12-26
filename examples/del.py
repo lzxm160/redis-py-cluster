@@ -11,18 +11,24 @@ rc = RedisCluster(startup_nodes=startup_nodes, max_connections=32, decode_respon
 # 1.1 23:59
 # 59 23 1 1 * command line
 # bak data
-shutil.copy2('/usr/local/redis/data/appendonly-6380.aof', '/usr/local/redis/data/appendonly-6380-2016.12.31bak.aof')
-shutil.copy2('/usr/local/redis/data/appendonly-6381.aof', '/usr/local/redis/data/appendonly-6381-2016.12.31bak.aof')
-shutil.copy2('/usr/local/redis/data/appendonly-6382.aof', '/usr/local/redis/data/appendonly-6382-2016.12.31bak.aof')
-shutil.copy2('/usr/local/redis/data/appendonly-7380.aof', '/usr/local/redis/data/appendonly-7380-2016.12.31bak.aof')
-shutil.copy2('/usr/local/redis/data/appendonly-7381.aof', '/usr/local/redis/data/appendonly-7381-2016.12.31bak.aof')
-shutil.copy2('/usr/local/redis/data/appendonly-7382.aof', '/usr/local/redis/data/appendonly-7382-2016.12.31bak.aof')
-shutil.copy2('/usr/local/redis/data/dump-6380.rdb', '/usr/local/redis/data/dump-6380-2016.12.31bak.rdb')
-shutil.copy2('/usr/local/redis/data/dump-6381.rdb', '/usr/local/redis/data/dump-6381-2016.12.31bak.rdb')
-shutil.copy2('/usr/local/redis/data/dump-6382.rdb', '/usr/local/redis/data/dump-6382-2016.12.31bak.rdb')
-shutil.copy2('/usr/local/redis/data/dump-7380.rdb', '/usr/local/redis/data/dump-7380-2016.12.31bak.rdb')
-shutil.copy2('/usr/local/redis/data/dump-7381.rdb', '/usr/local/redis/data/dump-7381-2016.12.31bak.rdb')
-shutil.copy2('/usr/local/redis/data/dump-7382.rdb', '/usr/local/redis/data/dump-7382-2016.12.31bak.rdb')
+port=[6380,6381,6382,7380,7381,7382]
+for i in port:
+	from='/usr/local/redis/data/appendonly-'+i+'.aof'
+	to='/usr/local/redis/data/appendonly-'+i+'-2016.12.31bak.aof'
+	try:
+		shutil.copy2(from, to)
+	except (IOError, os.error, shutil.Error), why:
+            print("Unable to remove \"%s\": %s" % (cur_path, why))
+            continue;
+for i in port:
+	from='/usr/local/redis/data/dump-'+i+'.rdb'
+	to='/usr/local/redis/data/dump-'+i+'-2016.12.31bak.rdb'
+	try:
+		shutil.copy2(from, to)
+	except (IOError, os.error, shutil.Error), why:
+            print("Unable to remove \"%s\": %s" % (cur_path, why))
+            continue;
+
 keys=set(rc.keys(pattern='{*_test_flow_number}:id'))
 for i in keys:
 	print(rc.get(i))
