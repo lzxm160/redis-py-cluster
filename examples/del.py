@@ -16,7 +16,7 @@ file=os.path.split(os.path.realpath(__file__))[0]+'/flow_no.txt'
 f=open(file,"a")
 f.write(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 f.write('---------------------\r\n')
-keys=set(rc.keys(pattern='{*_test_flow_number}:id'))
+keys=set(rc.keys(pattern='{*_flow_number}:id'))
 for i in keys:
 	str=i+':'+ rc.get(i)+'\r\n'
 	print(str)
