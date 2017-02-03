@@ -44,6 +44,7 @@ rc.zadd("{sorted2}","a","10")
 rc.zadd("{sorted2}","b","20")
 # rc.zinterstore("sortedresult","2","sorted1","sorted2")
 rc.zinterstore('{sorted}result', ['{sorted}1', '{sorted}2'])
+print(rc.zrange("{sorted}result","0","-1"))
 print(rc.zrange("{sorted}result","0","-1","withscores"))
 
 rc.zinterstore('{sorted}result', ['{sorted}1', '{sorted}2'], 'MAX')
