@@ -42,7 +42,7 @@ rc.zadd("sorted1","b","2")
 
 rc.zadd("sorted2","a","10")
 rc.zadd("sorted2","b","20")
-rc.zinterstore("sortedresult","2","sorted1","sorted2")
+# rc.zinterstore("sortedresult","2","sorted1","sorted2")
 rc.zinterstore('sortedresult', ['sorted1', 'sorted2'])
 print(zrange("sortedresult","0","-1","withscores"))
 
